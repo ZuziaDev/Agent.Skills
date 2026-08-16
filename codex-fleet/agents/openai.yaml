@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Fleet"
+  short_description: "Codex CLI görevlerini ve paralel filoları çalıştırır"
+  default_prompt: "Use $codex-fleet to execute this task with Codex CLI."

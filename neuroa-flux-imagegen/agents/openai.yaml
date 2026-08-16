@@ -1,0 +1,4 @@
+interface:
+  display_name: "Neuroa Flux ImageGen"
+  short_description: "Generate images with Neuroa Flux"
+  default_prompt: "Use $neuroa-flux-imagegen to generate an image with the Neuroa API using flux.2-klein-9b."
