@@ -1,0 +1,19 @@
+id,should_trigger,prompt
+trigger-01,true,TypeScript ile sıfırdan production-ready Discord bot yap.
+trigger-02,true,Bu discord.js projesine ticket sistemi ekle.
+trigger-03,true,Interaction failed hatasını bulup düzelt.
+trigger-04,true,Prefix komutlarını slash command sistemine taşı.
+trigger-05,true,Discord botumu güvenlik açısından audit et.
+trigger-06,true,"AutoMod, case history ve modlog ekle."
+trigger-07,true,Add Redis-backed distributed cooldowns and sharding.
+trigger-08,true,AI destek botuma provider fallback ve conversation memory ekle.
+trigger-09,true,Migrate this bot to the current discord.js release.
+trigger-10,true,"Botun Docker, CI ve health check sistemini kur."
+trigger-11,true,Discord webhook imza doğrulama ve deduplication ekle.
+trigger-12,true,Mevcut ticket botundaki çift kanal açılma hatasını düzelt.
+no-trigger-01,false,Discord'da mikrofonum çalışmıyor.
+no-trigger-02,false,Sunucum için isim öner.
+no-trigger-03,false,Discord hesabım çalındı ne yapmalıyım?
+no-trigger-04,false,Rol rengini nasıl değiştiririm?
+no-trigger-05,false,n8n ile Discord'a basit webhook mesajı at.
+no-trigger-06,false,Discord Nitro fiyatı ne kadar?

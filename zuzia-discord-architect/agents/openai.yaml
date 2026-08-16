@@ -1,0 +1,10 @@
+interface:
+  display_name: "Zuzia Discord Architect"
+  short_description: "Production Discord bot engineering, repair, security, AI, testing, and scale."
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  brand_color: "#7C3AED"
+  default_prompt: "Use $zuzia-discord-architect to inspect this repository and implement the requested Discord bot work with verification."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Zuzia Memory"
+  short_description: "Kalıcı proje ve kullanıcı hafızasını yönetir"
+  default_prompt: "Use $zuzia-memory to recall and manage durable project context safely."

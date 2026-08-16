@@ -1,0 +1,4 @@
+interface:
+  display_name: "Zuzia Brain"
+  short_description: "Obsidian vault MCP erişimi ve güvenli fallback"
+  default_prompt: "Use $zuzia-brain to list or manage the shared Zuzia Brain vault."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Zuzia CLI"
+  short_description: "Zuzia CLI ile güvenli chat ve coding agent"
+  default_prompt: "Use $zuzia-cli to inspect the current project with the installed Zuzia CLI."

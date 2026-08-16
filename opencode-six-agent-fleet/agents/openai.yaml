@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenCode Dual Six-Agent Fleet"
+  short_description: "On iki uzman ajanla güvenli repo orkestrasyonu"
+  default_prompt: "Use $opencode-six-agent-fleet to coordinate the core and Claude review fleets for this repository task."
