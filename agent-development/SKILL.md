@@ -23,7 +23,7 @@ Agents are autonomous subprocesses that handle complex, multi-step tasks indepen
 
 ```markdown
 ---
-name: agent-identifier
+name: agent-development
 description: Use this agent when [triggering conditions]. Typical triggers include [scenario 1 in prose], [scenario 2 in prose], and [scenario 3 in prose]. See "When to invoke" in the agent body for worked scenarios.
 model: inherit
 color: blue
@@ -311,7 +311,7 @@ Ensure system prompt is complete:
 
 ```markdown
 ---
-name: simple-agent
+name: agent-development
 description: Use this agent when [condition]. Typical triggers include [trigger 1] and [trigger 2]. See "When to invoke" in the agent body.
 model: inherit
 color: blue

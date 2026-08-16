@@ -1,5 +1,5 @@
 ---
-name: Presentations
+name: presentations
 description: Read, create or edit PowerPoint or Google Slides decks. Use for presentation, slide deck, PowerPoint, PPT, PPTX, or Google Slides requests.
 ---
 

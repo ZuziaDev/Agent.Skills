@@ -115,7 +115,7 @@ Set these as secrets in your CI provider. Never commit them to source control.
 ### GitHub Actions
 
 ```yaml
-name: Deploy to Vercel
+name: deployments-cicd
 on:
   push:
     branches: [main]

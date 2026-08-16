@@ -179,7 +179,7 @@ turbo build --filter=@myorg/*
 ### GitHub Actions — parallel jobs per package
 
 ```yaml
-name: CI
+name: turborepo
 on: [push, pull_request]
 
 jobs:

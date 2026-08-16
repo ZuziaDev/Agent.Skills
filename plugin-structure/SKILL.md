@@ -124,7 +124,7 @@ commands/
 **File format**:
 ```markdown
 ---
-name: command-name
+name: plugin-structure
 description: Command description
 ---
 
@@ -185,7 +185,7 @@ skills/
 **SKILL.md format**:
 ```markdown
 ---
-name: Skill Name
+name: plugin-structure
 description: When to use this skill
 version: 1.0.0
 ---
