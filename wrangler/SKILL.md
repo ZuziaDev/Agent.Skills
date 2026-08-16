@@ -17,21 +17,16 @@ Fetch the **latest** information before writing or reviewing Wrangler commands a
 | Wrangler config schema | `node_modules/wrangler/config-schema.json` | Config fields, binding shapes, allowed values |
 | Cloudflare docs | Search tool or `https://developers.cloudflare.com/workers/` | API reference, compatibility dates/flags |
 
-## FIRST: Check if Wrangler is installed, and if not, install it
-
-Check if Wrangler is installed by running:
+## FIRST: Verify Wrangler Installation
 
 ```bash
 wrangler --version  # Requires v4.x+
 ```
 
-If Wrangler is not installed, you should install it by running:
-
+If not installed:
 ```bash
 npm install -D wrangler@latest
 ```
-
-Wherever possible, you should use Wrangler instead of manually constructing API requests.
 
 ## Key Guidelines
 
@@ -39,7 +34,7 @@ Wherever possible, you should use Wrangler instead of manually constructing API 
 - **Set `compatibility_date`**: Use a recent date (within 30 days). Check https://developers.cloudflare.com/workers/configuration/compatibility-dates/
 - **Generate types after config changes**: Run `wrangler types` to update TypeScript bindings.
 - **Local dev defaults to local storage**: Bindings use local simulation unless `remote: true`.
-- **Profile Worker startup**: Run `wrangler check startup` to measure startup time and detect scripts that exceed the startup time limit.
+- **Validate config before deploy**: Run `wrangler check` to catch errors early.
 - **Use environments for staging/prod**: Define `env.staging` and `env.production` in config.
 
 ## Quick Start: New Worker
@@ -60,7 +55,7 @@ npx create-cloudflare@latest my-app
 | Deploy to Cloudflare | `wrangler deploy` |
 | Deploy dry run | `wrangler deploy --dry-run` |
 | Generate TypeScript types | `wrangler types` |
-| Profile Worker startup time | `wrangler check startup` |
+| Validate configuration | `wrangler check` |
 | View live logs | `wrangler tail` |
 | Delete Worker | `wrangler delete` |
 | Auth status | `wrangler whoami` |
@@ -76,7 +71,7 @@ npx create-cloudflare@latest my-app
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "my-worker",
   "main": "src/index.ts",
-  "compatibility_date": "2026-01-01"
+  "compatibility_date": "2026-03-18"
 }
 ```
 
@@ -87,8 +82,8 @@ npx create-cloudflare@latest my-app
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "my-worker",
   "main": "src/index.ts",
-  "compatibility_date": "2026-01-01",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_date": "2026-03-18",
+  "compatibility_flags": ["nodejs_compat_v2"],
 
   // Environment variables
   "vars": {
@@ -240,16 +235,12 @@ wrangler deploy --minify
 
 ### Manage Secrets
 
-> **Security**: Never pass secret values as command arguments or pipe them via `echo`.
-> Use the interactive prompt (preferred), pipe from a file, or use `secret bulk`.
-> Never output, log, or hardcode secret values in commands.
-
 ```bash
-# Set secret — interactive prompt (preferred, wrangler will ask for the value securely)
+# Set secret interactively
 wrangler secret put API_KEY
 
-# Set secret from a file (useful for PEM keys, CI environments)
-wrangler secret put PRIVATE_KEY < path/to/private-key.pem
+# Set from stdin
+echo "secret-value" | wrangler secret put API_KEY
 
 # List secrets
 wrangler secret list
@@ -257,7 +248,7 @@ wrangler secret list
 # Delete secret
 wrangler secret delete API_KEY
 
-# Bulk secrets from JSON file (do not commit this file to version control)
+# Bulk secrets from JSON file
 wrangler secret bulk secrets.json
 ```
 
@@ -501,15 +492,7 @@ wrangler vectorize query my-index --vector "[0.1, 0.2, ...]" --top-k 10
 ```bash
 # Create config
 wrangler hyperdrive create my-hyperdrive \
-  --origin-host db.example.com \
-  --origin-port 5432 \
-  --database my-database \
-  --origin-user db-user \
-  --origin-password "$DB_PASSWORD"
-
-# Or using a connection string from an environment variable
-wrangler hyperdrive create my-hyperdrive \
-  --connection-string "$HYPERDRIVE_CONNECTION_STRING"
+  --connection-string "postgres://user:pass@host:5432/database"
 
 # List configs
 wrangler hyperdrive list
@@ -518,8 +501,7 @@ wrangler hyperdrive list
 wrangler hyperdrive get <HYPERDRIVE_ID>
 
 # Update config
-wrangler hyperdrive update <HYPERDRIVE_ID> \
-  --origin-password "$DB_PASSWORD"
+wrangler hyperdrive update <HYPERDRIVE_ID> --origin-password "new-password"
 
 # Delete config
 wrangler hyperdrive delete <HYPERDRIVE_ID>
@@ -529,7 +511,7 @@ wrangler hyperdrive delete <HYPERDRIVE_ID>
 
 ```jsonc
 {
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_flags": ["nodejs_compat_v2"],
   "hyperdrive": [
     { "binding": "HYPERDRIVE", "id": "<HYPERDRIVE_ID>" }
   ]
@@ -644,19 +626,13 @@ wrangler containers images delete my-app:latest
 
 ### Manage External Registries
 
-> **Security**: Never hardcode registry credentials in commands. Use environment variables.
-
 ```bash
 # List configured registries
 wrangler containers registries list
 
 # Configure external registry (e.g., ECR)
 wrangler containers registries configure <DOMAIN> \
-  --aws-access-key-id "$AWS_ACCESS_KEY_ID"
-
-# Configure DockerHub
-wrangler containers registries configure <DOMAIN> \
-  --dockerhub-username "$DOCKERHUB_USERNAME"
+  --public-credential <AWS_ACCESS_KEY_ID>
 
 # Delete registry configuration
 wrangler containers registries delete <DOMAIN>
@@ -889,7 +865,7 @@ curl http://localhost:8787/__scheduled
 |-------|----------|
 | `command not found: wrangler` | Install: `npm install -D wrangler` |
 | Auth errors | Run `wrangler login` |
-| Startup time limit exceeded | Run `wrangler check startup` to profile startup and generate CPU profiles |
+| Config validation errors | Run `wrangler check` |
 | Type errors after config change | Run `wrangler types` |
 | Local storage not persisting | Check `.wrangler/state` directory |
 | Binding undefined in Worker | Verify binding name matches config exactly |
@@ -900,8 +876,8 @@ curl http://localhost:8787/__scheduled
 # Check auth status
 wrangler whoami
 
-# Profile Worker startup time
-wrangler check startup
+# Validate config
+wrangler check
 
 # View config schema
 wrangler docs configuration
@@ -919,4 +895,3 @@ wrangler docs configuration
 6. **Use `.dev.vars` for local secrets**: Never commit secrets to config.
 7. **Test locally first**: `wrangler dev` with local bindings before deploying.
 8. **Use `--dry-run` before major deploys**: Validate changes without deployment.
-9. **Never embed secrets in commands**: Use interactive prompts (`wrangler secret put`), file-based input (`wrangler secret bulk`), or secure CI environment variables. Never echo, log, or pass secret values as CLI arguments.
