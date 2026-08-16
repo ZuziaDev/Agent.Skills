@@ -1,5 +1,5 @@
 ---
-name: "pdf"
+name: pdf
 description: "Read, create, inspect, render, and verify PDF files where visual layout matters, including fillable AcroForms. Use Poppler rendering plus Python tools such as reportlab, pdfplumber, and pypdf for generation and extraction."
 ---
 

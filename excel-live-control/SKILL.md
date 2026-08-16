@@ -1,5 +1,5 @@
 ---
-name: "excel-live-control"
+name: excel-live-control
 description: "Control an open or active Microsoft Excel workbook through the ChatGPT add-in or connected session. Use when the user tags the Microsoft Excel app in Codex or follows up on an established live Excel task. Do not use for standalone spreadsheet files or Google Sheets."
 ---
 

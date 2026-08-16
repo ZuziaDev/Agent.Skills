@@ -1,5 +1,5 @@
 ---
-name: "Spreadsheets"
+name: spreadsheets
 description: "Create, edit, analyze, and verify standalone spreadsheet files or Google Sheets-ready workbooks, including .xlsx, .xls, .csv, and .tsv. Do not use for live controlling Microsoft Excel app or a live Excel session."
 ---
 

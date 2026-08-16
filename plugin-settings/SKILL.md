@@ -122,7 +122,7 @@ Agents can reference settings in their instructions:
 
 ```markdown
 ---
-name: configured-agent
+name: plugin-settings
 description: Agent that adapts to project settings
 ---
 

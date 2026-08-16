@@ -183,7 +183,7 @@ I've analyzed your codebase and identified the top automations for each category
 **Also available in**: [plugin-name] plugin (if applicable)
 ```yaml
 ---
-name: [skill-name]
+name: claude-automation-recommender
 description: [what it does]
 disable-model-invocation: true  # for user-only
 ---

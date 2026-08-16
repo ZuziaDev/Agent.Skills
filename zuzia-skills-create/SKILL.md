@@ -40,7 +40,7 @@ Her skill dosyası aşağıdaki şablonu kullanır:
 
 ```markdown
 ---
-name: <kebab-case-isim>
+name: zuzia-skills-create
 description: <Ne yapar? Hangi kullanıcı ifadeleri tetikler? — tek satır>
 ---
 
