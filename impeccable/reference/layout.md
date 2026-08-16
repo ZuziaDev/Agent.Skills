@@ -21,7 +21,7 @@ Spawn two parallel sub-agents whenever a sub-agent/Task tool is exposed: one for
 **Sub-agent B (mechanical pre-scan)**: run the bundled detector scoped to layout:
 
 ```bash
-node .claude/skills/impeccable/scripts/detect.mjs --json --scope layout [target files or dirs]
+node .agents/skills/impeccable/scripts/detect.mjs --json --scope layout [target files or dirs]
 ```
 
 A missing `node` on PATH is not permission to skip: hunt for a runtime (`command -v node`, nvm or Homebrew paths, the harness's own bundled node) and run it by full path. If none exists, halt the scan and report that Node must be installed (the parent relays this to the user); do **not** substitute grep for the detector or proceed unscanned. The detector abstains on arbitrary Tailwind spacing (`gap-[13px]`, `p-[7px]`) and ad-hoc `z-index` stacks, so when the project documents a spacing scale, also grep `gap-\[`, `p[trblxy]?-\[`, `m[trblxy]?-\[`, `z-\[` and judge those hits against it. Return the findings JSON plus the grep verdicts.
@@ -162,7 +162,7 @@ Create a systematic plan:
 
 Answer each item above by citing the file, selector, or value that satisfies it; never a bare yes. Then re-run the pre-scan and fix until the count of unresolved items and unaccepted findings is zero.
 
-When the rhythm and hierarchy land, hand off to `/impeccable polish` for the final pass.
+When the rhythm and hierarchy land, hand off to `$impeccable polish` for the final pass.
 
 ## Live-mode signature params
 
